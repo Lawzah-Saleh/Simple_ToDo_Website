@@ -95,25 +95,22 @@
   <main class="app-wrap">
     <h1 class="title display-6 mb-4"><span>MY TO DO LIST</span></h1>
 
-    <!-- Input -->
+    
     <div class="input-card mb-3">
       <input id="newTask" type="text" placeholder="Masukan to do list" aria-label="Add a task" />
       <button id="saveBtn" class="btn-save">Save</button>
     </div>
 
-    <!-- Stats -->
     <div class="stats" role="status" aria-live="polite">
       <div class="stat"><div class="inner"><span class="label">Todo Done : </span><span id="doneCount" class="value">0</span></div></div>
       <div class="stat"><div class="inner"><span class="label">Todo On Progress : </span><span id="progressCount" class="value">0</span></div></div>
     </div>
 
-    <!-- List -->
+
     <section class="mt-4" id="listWrap" aria-label="Tasks list">
-      <!-- Items are injected here -->
+    
     </section>
 
-
-    <!-- Toasts -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080">
       <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="status" aria-live="polite" aria-atomic="true">
         <div class="d-flex">
@@ -123,11 +120,9 @@
       </div>
     </div>
 
-    <!-- Empty state -->
+  
     <p id="emptyState" class="text-center muted mt-4 mb-0" hidden>No tasks yet — add your first one ✨</p>
   </main>
-
-    <!-- Confirm Delete Modal -->
     <div class="modal fade" id="confirmDelete" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -144,13 +139,9 @@
       </div>
     </div>
 <script>
-  // ====== إعدادات API ======
-  // إذا كانت الواجهة تُخدَّم من نفس دومين Laravel استخدم مسارًا نسبيًا: '' (فارغ) + '/api'
-  // وإن كانت منفصلة، ضع الدومين: 'http://localhost:8000'
-  const API_ORIGIN = ''; // مثال: '' أو 'http://localhost:8000'
+  
+  const API_ORIGIN = ''; 
   const API_BASE = `${API_ORIGIN}/api`;
-
-  // ====== حالة التطبيق وعناصر الواجهة ======
   const state = { tasks: [], isLoading: false };
 
   const els = {
@@ -166,18 +157,15 @@
     confirmModalEl: document.getElementById('confirmDelete'),
   };
 
-  // Bootstrap helpers
   const getModal = () => bootstrap.Modal.getOrCreateInstance(els.confirmModalEl);
   const showToast = (msg) => {
     els.toastBody.textContent = msg;
     bootstrap.Toast.getOrCreateInstance(els.toast).show();
   };
-
-  // ====== استدعاءات API (شكل الاستجابة = JSON مباشر من الكنترولر) ======
   async function apiGetTasks() {
     const res = await fetch(`${API_BASE}/tasks`, { headers: { 'Accept': 'application/json' } });
     if (!res.ok) throw new Error('فشل تحميل المهام');
-    return await res.json(); // مصفوفة مهام
+    return await res.json(); 
   }
 
   async function apiCreateTask(title) {
@@ -187,7 +175,7 @@
       body: JSON.stringify({ title })
     });
     if (!res.ok) throw new Error('فشل إنشاء المهمة');
-    return await res.json(); // كائن مهمة
+    return await res.json(); 
   }
 
   async function apiUpdateTask(id, patch) {
@@ -197,7 +185,7 @@
       body: JSON.stringify(patch)
     });
     if (!res.ok) throw new Error('فشل تحديث المهمة');
-    return await res.json(); // كائن مهمة بعد التحديث
+    return await res.json(); 
   }
 
   async function apiDeleteTask(id) {
@@ -206,7 +194,7 @@
   }
 
   async function apiReorder(tasksPairs) {
-    // متوافق مع الكنترولر: public function reorder(Request $request) expects 'tasks' => [ {id, order}, ... ]
+    
     const res = await fetch(`${API_BASE}/tasks/reorder`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
