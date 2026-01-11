@@ -4,12 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My To Do List — Pro</title>
-
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -21,7 +17,6 @@
       --ring: 0 0 0 4px rgba(122, 90, 248, .15);
     }
 
-    /* Base */
     html, body { height: 100%; margin: 0; }
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -35,21 +30,18 @@
       position:fixed; inset:0;
       background: url("images/hero.webp") no-repeat center center / cover;
       filter: blur(7px) brightness(0.99);
-      transform: scale(1.05);            /* لمنع ظهور أطراف شفافة بعد الـblur */
+      transform: scale(1.05);
       z-index:-2;
     }
     body::after{
       content:"";
       position:fixed; inset:0;
-      /* طبقة تعتيم ناعمة + غسلة لونية خفيفة */
       background:
         radial-gradient(1200px 600px at 10% 10%, rgba(6,215,217,.10), transparent 60%),
         radial-gradient(1000px 600px at 90% 90%, rgba(181,23,255,.08), transparent 60%),
         rgba(15,23,42,0.30);
       z-index:-1;
     }
-
-    /* App container (Glassmorphism) */
     .app-wrap{
       max-width: 860px;
       margin: 60px auto;
@@ -62,28 +54,22 @@
       border: 1px solid rgba(255,255,255,0.6);
     }
     @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
-      .app-wrap{ background: rgba(255,255,255,0.92); } /* بديل في المتصفحات القديمة */
+      .app-wrap{ background: rgba(255,255,255,0.92); }
     }
 
-    /* Title */
     .title{font-weight: 800; letter-spacing:.5px; text-transform: uppercase; text-align:center;}
     .title span{background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;}
 
-    /* Input Row */
     .input-card{background:#fff; border:0; border-radius:14px; box-shadow: var(--card-shadow); padding: 10px; display:flex; gap:10px; align-items:center}
     .input-card input{border:0; outline:0; height:56px; padding-inline:16px; flex:1; font-size:16px}
     .input-card input::placeholder{color:#9aa4b2}
     .btn-save{height:56px; min-width:120px; border:0; border-radius:12px; padding:0 22px; color:#fff; font-weight:700; background: var(--gradient); box-shadow: 0 6px 16px rgba(122, 90, 248, .25)}
     .btn-save:focus{box-shadow: 0 6px 16px rgba(122, 90, 248, .25), var(--ring)}
-
-    /* Stats */
     .stats{display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:18px}
     .stat{background:#fff; border-radius:8px; box-shadow: var(--card-shadow); border:1px solid #eef0f4}
     .stat .inner{padding:10px 16px; font-weight:600}
     .stat .label{opacity:.8}
     .stat .value{background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight:800}
-
-    /* List */
     .todo-item{background:#fff; border:1px solid #eef0f4; border-radius:10px; box-shadow: var(--card-shadow); padding:16px 16px; display:flex; align-items:center; justify-content:space-between}
     .todo-item + .todo-item{margin-top:16px}
     .todo-title{margin:0; font-weight:600; color:#374151}
@@ -107,7 +93,6 @@
 <body>
 
   <main class="app-wrap">
-    <!-- Title -->
     <h1 class="title display-6 mb-4"><span>MY TO DO LIST</span></h1>
 
     <!-- Input -->
